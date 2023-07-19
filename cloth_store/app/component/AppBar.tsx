@@ -1,39 +1,13 @@
 import Image from "next/image"
 export default function AppBar(){
     return(
-<div style={styles.AppBar}>
+<div className="w-full h-16 fixed top-0 left-0 right-0 bg-red">
 
-    <Image alt="shop" src="/shop.png" width={100} height={100} style={styles.shop}/>
+    <Image alt="shop" src="/shop.png" width={100} height={100} className="w-[1.8rem] h-[2.1rem] absolute left-[3.19em] top-[0.94em]"/>
   
 
-    <Image alt="search" src="/search.png" width={100} height={100} style={styles.search}/>
+    <Image alt="search" src="/search.png" width={100} height={100} className="w-[1.54rem] h-[1.56rem] absolute right-[3.19em] top-[1.25em]"/>
 
 </div>
     )
-}
-const styles = {
-    AppBar:{
-        width:"100%",
-        height:"5rem",
-        background:"#FF304F",
-       position:"absolute",
-       top:"0px"
-    
-    },
-  
-   
-    shop:{
-        width:"1.88rem",
-        height:" 2.18rem",
-position:"absolute",
-left:"3.19rem",
-top:"1.37rem"
-    },
-    search:{
-        width: "1.54rem",
-        height: "1.56rem",
-        position:"absolute",
-    right:"3.19rem",
-        top:"1.69rem"
-    }
 }

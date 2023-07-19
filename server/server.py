@@ -9,3 +9,6 @@ def hello_world():
 def getPosterHomeScreen():
 
     return send_file("assets/PosterHomeScreen.png")
+@app.route("/getPosterTileHomeScreen")
+def getHomeScreenTitle():
+    return ""
