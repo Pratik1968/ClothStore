@@ -1,50 +1,64 @@
 "use client"
-import { Component,useState} from "react";
-
+import {useState,useEffect} from "react";
+import CatergoriesCards from "./component/CatergoriesCards";
 import AppBar from "./component/AppBar"
 import {isMobile} from 'react-device-detect';
-export default class Page extends Component {
-  
-  constructor(props:any){
-  super(props)
+import ProductCards from "./component/ProductCards";
 
-
-
-  }
-  render() {
-
-
-    return (
-      <App />
-    );
-
-  }
-
-
+export default function Page(){
+  return <App/>
+}
+function Trending(){
+ let prod =[1,2,3,4,5,6,7,8,9,10]
+  return(
+    <div className="f mt-14 w-full h-[100px]">
+      <p className="ml-12 font-bold text-xl text-left mb-[1.58rem]">Trending</p>
+     <div className="flex  overflow-x-auto space-x-8" >
+     
+      {
+prod.map(p=>(<ProductCards key={p} title="Blue Shirt" price="$100" width="100" height="100" alt="trending" src="http://192.168.29.58:5000/CategoriesMenHomeScreen.png"/>))
+      }
+      </div>
+      </div>
+  )
+}
+function Category()
+{
+  return(
+  <div className="flex flex-col items-center justify-center mt-14">
+    <p className="font-bold text-xl">Categories</p> 
+    <div className="w-full flex flex-row justify-evenly mt-5">
+    <CatergoriesCards title="Men" width ={100} height={100} src="http://192.168.29.58:5000/CategoriesMenHomeScreen.png" alt="hello"/>
+    <CatergoriesCards title="Women" width ={100} height={100} src="http://192.168.29.58:5000/CategoriesWomenHomeScreen.png" alt="hello"/>
+    <CatergoriesCards title="Kids" width ={100} height={100} src="http://192.168.29.58:5000/CategoriesKidsHomeScreen.png" alt="hello"/>
+  </div>
+  </div>
+  )
 }
 function Poster() {
   
 
   return (
-    <div className="h-96 w-full bg-[url('http://192.168.29.58:5000/getPosterHomeScreen.png')] bg-cover mt-[4em] flex  flex-col items-center justify-center">
+    <div className="h-96 w-full bg-[url('http://192.168.29.58:5000/PosterHomeScreen.png')] bg-cover mt-[4em] flex  flex-col items-center justify-center">
       <p className="text-4xl font-bold text-white text-center mb-[0.5em] "> Upgrade Your Style, Shop Now  </p>
       <button className="text-base font-bold bg-red text-white w-[29.2%] h-10 rounded-full">Buy</button>
     </div>
   )
 }
 function OrientationLandscapeWarning(){
-  let Height = "40%"
+
 
   return(
     <div  className="h-[50%] w-[50%] bg-white absolute top-1/4 left-[30%] flex flex-col rounded p-5 border shadow-lg item-center justify-center">
       <p className="mb-4 font-semibold text-center">Website is not optimised for landscape</p>
-    {/* <button className="rounded-full bg-red w-[29.2%] h-10 font-bold text-white self-end ">Ok</button> */}
-    </div> 
+      </div> 
   )
 }
 function App(props:any) {
+  const [landscape,setLandscape] = useState(false)
+useEffect(()=>{
   let portrait = window.matchMedia("(orientation: portrait)");
- const [landscape,setLandscape] = useState(!portrait.matches)
+setLandscape(!portrait.matches)
  
 
 
@@ -55,13 +69,16 @@ function App(props:any) {
           setLandscape(true)
       }
   })
+})
 
+ 
   return (
     <div>
       <AppBar />
       <Poster />
 {landscape === true && isMobile ? <OrientationLandscapeWarning/>:null}
-
+<Category/>
+<Trending/>
  </div>
   )
-}
+  }
